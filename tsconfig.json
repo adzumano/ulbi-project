@@ -11,6 +11,10 @@
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": true,
     "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./src/*"]
+    }
   },
   "ts-node": {
     "compilerOptions": {
