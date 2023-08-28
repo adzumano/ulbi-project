@@ -1,7 +1,7 @@
 import {Link, Route, Routes} from "react-router-dom";
 import {AboutPageLazy} from "./pages/AboutPage/AboutPage.lazy";
 import {MainPageLazy} from "./pages/MainPage/MainPage.lazy";
-import {Suspense, useContext, useState} from "react";
+import {Suspense} from "react";
 import './styles/index.scss'
 import classNames from "classnames";
 import {useTheme} from "./theme/useTheme";
