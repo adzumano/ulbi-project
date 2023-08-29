@@ -15,7 +15,7 @@ export const buildPlugins = ({paths, isDev}: BuildOptions): WebpackPluginInstanc
             chunkFilename: 'css/[name].[contenthash:8].css'
         }),
         new DefinePlugin({
-            __IS_DEV__: isDev
+            _IS_DEV_: isDev
         })
     ]
 
