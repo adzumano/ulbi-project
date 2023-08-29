@@ -3,18 +3,15 @@ import styles from "./AppLink.module.scss";
 import {FC} from "react";
 import {Link, LinkProps} from "react-router-dom";
 
-export enum AppLinkTheme {
-    PRIMARY='primary',
-    SECONDARY='secondary'
-}
+type AppLinkVariant = 'primary' | 'secondary';
 interface AppLinkProps extends LinkProps{
     className?:string
-    theme?: AppLinkTheme
+    variant?: AppLinkVariant
 }
 export const AppLink: FC<AppLinkProps> = (props) => {
-    const { theme=AppLinkTheme.PRIMARY, className, children, ...otherProps} = props;
+    const { variant='primary', className, children, ...otherProps} = props;
     return (
-        <Link className={classNames(styles.appLink, className, styles[theme])} {...otherProps}>
+        <Link className={classNames(styles.appLink, className, styles[variant])} {...otherProps}>
             {children}
         </Link>
     );
