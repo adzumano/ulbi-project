@@ -20,7 +20,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
             data-testid="sidebar"
         >
             <button onClick={onToggle} data-testid="sidebar-toggle">
-                Toggle
+                ...
             </button>
             <div className={styles.switcher}>
                 <ThemeSwitcher />
