@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: install deps
-        run: npm install
+        run: npm install --legacy-peer-deps
       - name: linting ts
         run: npm run lint:ts
       - name: linting scss
