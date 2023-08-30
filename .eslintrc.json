@@ -50,7 +50,8 @@
         "i18next/no-literal-string": ["error", {
             "markupOnly": true,
             "ignoreAttribute": ["data-testid", "variant"]
-        }]
+        }],
+        "react/display-name": "off"
     },
     "globals": {
         "_IS_DEV_": true
