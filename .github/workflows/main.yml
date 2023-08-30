@@ -46,18 +46,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Restore npm dependencies
-        uses: actions/cache@v3
-        id: cache-npm
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
       - name: Unit tests
-        run: npm run test:unit --ci
+        run: npm run test:unit
   testing-ui:
     runs-on: ubuntu-latest
     environment:
