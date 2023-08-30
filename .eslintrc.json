@@ -20,6 +20,12 @@
             "parserOptions": {
                 "sourceType": "script"
             }
+        },
+        {
+            "files": ["**/src/**/*.test.{ts,tsx}"],
+            "rules": {
+                "i18next/no-literal-string": "off"
+            }
         }
     ],
     "parserOptions": {
@@ -42,7 +48,8 @@
         "@typescript-eslint/comma-dangle": "off",
         "@typescript-eslint/space-before-function-paren": "off",
         "i18next/no-literal-string": ["error", {
-            "markupOnly": true
+            "markupOnly": true,
+            "ignoreAttribute": ["data-testid", "variant"]
         }]
     },
     "globals": {
