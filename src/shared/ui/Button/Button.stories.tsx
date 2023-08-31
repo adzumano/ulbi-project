@@ -56,3 +56,72 @@ export const OutlineDark: Story = {
     },
 }
 OutlineDark.decorators = [ThemeDecorator('dark')]
+
+export const OutlineSizeSmall: Story = {
+    args: {
+        children: 'Button',
+        variant: 'outline',
+        size: 'small',
+    },
+}
+
+export const OutlineSizeMedium: Story = {
+    args: {
+        children: 'Button',
+        variant: 'outline',
+        size: 'medium',
+    },
+}
+
+export const OutlineSizeLarge: Story = {
+    args: {
+        children: 'Button',
+        variant: 'outline',
+        size: 'large',
+    },
+}
+
+export const Background: Story = {
+    args: {
+        children: 'Button',
+        variant: 'background',
+    },
+}
+
+export const BackgroundInverted: Story = {
+    args: {
+        children: 'Button',
+        variant: 'backgroundInverted',
+    },
+}
+
+export const Square: Story = {
+    args: {
+        children: '>',
+        square: true,
+    },
+}
+
+export const SquareSizeSmall: Story = {
+    args: {
+        children: '>',
+        size: 'small',
+        square: true,
+    },
+}
+
+export const SquareSizeMedium: Story = {
+    args: {
+        children: '>',
+        size: 'medium',
+        square: true,
+    },
+}
+
+export const SquareSizeLarge: Story = {
+    args: {
+        children: '>',
+        size: 'large',
+        square: true,
+    },
+}

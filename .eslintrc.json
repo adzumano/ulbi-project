@@ -49,7 +49,7 @@
         "@typescript-eslint/space-before-function-paren": "off",
         "i18next/no-literal-string": ["error", {
             "markupOnly": true,
-            "ignoreAttribute": ["data-testid", "variant", "to"]
+            "ignoreAttribute": ["data-testid", "variant", "to", "size"]
         }],
         "react/display-name": "off"
     },
