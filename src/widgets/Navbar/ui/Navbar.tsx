@@ -1,7 +1,8 @@
 import classNames from 'classnames'
-import { type FC } from 'react'
+import { type FC, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { AppLink } from 'shared/ui/AppLink/AppLink'
+import { Button } from 'shared/ui/Button/Button'
+import { Modal } from 'shared/ui/Modal/Modal'
 
 import styles from './Navbar.module.scss'
 
@@ -10,13 +11,22 @@ interface NavbarProps {
 }
 export const Navbar: FC<NavbarProps> = ({ className }) => {
     const { t } = useTranslation()
+    const [isOpen, setIsOpen] = useState(false)
+
+    const onOpen = useCallback(() => {
+        setIsOpen(true)
+    }, [])
+    const onClose = useCallback(() => {
+        setIsOpen(false)
+    }, [])
     return (
         <nav className={classNames(styles.navbar, className)}>
-            <div className={styles.links}>
-                <AppLink to={'/'} variant={'secondary'}>
-                    {t('main')}
-                </AppLink>
-            </div>
+            <Button variant={'clearInverted'} className={styles.links} size={'small'} onClick={onOpen}>
+                Войти
+            </Button>
+            <Modal isOpen={isOpen} onClose={onClose}>
+                Войти
+            </Modal>
         </nav>
     )
 }

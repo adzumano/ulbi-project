@@ -34,7 +34,8 @@
     },
     "plugins": [
         "react",
-        "i18next"
+        "i18next",
+        "react-hooks"
     ],
     "rules": {
         "indent": ["error", 4],
@@ -51,7 +52,9 @@
             "markupOnly": true,
             "ignoreAttribute": ["data-testid", "variant", "to", "size"]
         }],
-        "react/display-name": "off"
+        "react/display-name": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "error"
     },
     "globals": {
         "_IS_DEV_": true
