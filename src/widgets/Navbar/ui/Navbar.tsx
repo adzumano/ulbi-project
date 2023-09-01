@@ -25,7 +25,7 @@ export const Navbar: FC<NavbarProps> = ({ className }) => {
                 {t('logIn')}
             </Button>
             <Modal isOpen={isOpen} onClose={onClose}>
-                {t('logIn')}
+                <Button variant={'outline'}>{t('logIn')}</Button>
             </Modal>
         </nav>
     )

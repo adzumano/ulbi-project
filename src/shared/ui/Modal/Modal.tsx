@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import { type FC, type MouseEvent, useCallback, useEffect, useRef, useState } from 'react'
+import { useTheme } from 'shared/config/theme'
 import { Portal } from 'shared/ui/Portal/Portal'
 
 import styles from './Modal.module.scss'
@@ -19,6 +20,7 @@ type TimerRef = ReturnType<typeof setTimeout>
 const ANIMATION_DELAY = 300
 export const Modal: FC<ModalProps> = (props) => {
     const { className, children, isOpen = false, onClose } = props
+    const { theme } = useTheme()
     const timerRef = useRef<TimerRef>()
     const [isClosing, setIsClosing] = useState<boolean>(false)
 
@@ -61,7 +63,7 @@ export const Modal: FC<ModalProps> = (props) => {
     return (
         <Portal>
             <div
-                className={classNames(styles.modal, className, {
+                className={classNames(styles.modal, className, theme, {
                     [styles.opened]: isOpen,
                     [styles.closed]: isClosing,
                 })}
