@@ -1,5 +1,5 @@
 import path from 'path'
-import { type Configuration, type RuleSetRule } from 'webpack'
+import { type Configuration } from 'webpack'
 
 import { buildCssLoader } from '../build/loaders/buildCssLoader'
 import { buildSvgLoader } from '../build/loaders/buildSvgLoader'

@@ -8,6 +8,9 @@ const meta = {
     component: Button,
     tags: ['autodocs'],
     argTypes: {},
+    args: {
+        children: 'Button',
+    },
 } satisfies Meta<typeof Button>
 
 export default meta
@@ -15,28 +18,23 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
     args: {
-        children: 'Button',
         variant: 'primary',
     },
 }
-
 export const PrimaryDark: Story = {
     args: {
-        children: 'Button',
-        variant: 'primary',
+        ...Primary.args,
     },
 }
 PrimaryDark.decorators = [ThemeDecorator('dark')]
 export const Clear: Story = {
     args: {
-        children: 'Button',
         variant: 'clear',
     },
 }
 
 export const ClearDark: Story = {
     args: {
-        children: 'Button',
         variant: 'clear',
     },
 }
@@ -44,63 +42,55 @@ ClearDark.decorators = [ThemeDecorator('dark')]
 
 export const ClearInverted: Story = {
     args: {
-        children: 'Button',
         variant: 'clearInverted',
     },
 }
 
+export const ClearInvertedDark: Story = {
+    args: {
+        variant: 'clearInverted',
+    },
+}
+ClearInvertedDark.decorators = [ThemeDecorator('dark')]
+
 export const Outline: Story = {
     args: {
-        children: 'Button',
         variant: 'outline',
     },
 }
 
 export const OutlineDark: Story = {
     args: {
-        children: 'Button',
         variant: 'outline',
     },
 }
 OutlineDark.decorators = [ThemeDecorator('dark')]
 
-export const OutlineSizeSmall: Story = {
-    args: {
-        children: 'Button',
-        variant: 'outline',
-        size: 'small',
-    },
-}
-
-export const OutlineSizeMedium: Story = {
-    args: {
-        children: 'Button',
-        variant: 'outline',
-        size: 'medium',
-    },
-}
-
-export const OutlineSizeLarge: Story = {
-    args: {
-        children: 'Button',
-        variant: 'outline',
-        size: 'large',
-    },
-}
-
 export const Background: Story = {
     args: {
-        children: 'Button',
         variant: 'background',
     },
 }
 
+export const BackgroundDark: Story = {
+    args: {
+        variant: 'background',
+    },
+}
+BackgroundDark.decorators = [ThemeDecorator('dark')]
+
 export const BackgroundInverted: Story = {
     args: {
-        children: 'Button',
         variant: 'backgroundInverted',
     },
 }
+
+export const BackgroundInvertedDark: Story = {
+    args: {
+        variant: 'backgroundInverted',
+    },
+}
+BackgroundInvertedDark.decorators = [ThemeDecorator('dark')]
 
 export const Square: Story = {
     args: {
@@ -109,26 +99,20 @@ export const Square: Story = {
     },
 }
 
-export const SquareSizeSmall: Story = {
+export const SizeSmall: Story = {
     args: {
-        children: '>',
         size: 'small',
-        square: true,
     },
 }
 
-export const SquareSizeMedium: Story = {
+export const SizeMedium: Story = {
     args: {
-        children: '>',
         size: 'medium',
-        square: true,
     },
 }
 
 export const SquareSizeLarge: Story = {
     args: {
-        children: '>',
         size: 'large',
-        square: true,
     },
 }

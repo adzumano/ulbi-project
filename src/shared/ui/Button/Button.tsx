@@ -13,12 +13,14 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     size?: ButtonSize
 }
 export const Button: FC<ButtonProps> = (props) => {
-    const { variant = 'primary', size = 'medium', square, className, children, ...otherProps } = props
+    const { variant = 'primary', size = 'medium', square = false, className, children, ...otherProps } = props
+
+    const mods: Record<string, boolean> = {
+        [styles.square]: square,
+    }
     return (
         <button
-            className={classNames(styles.button, className, styles[variant], styles[size], {
-                [styles.square]: square,
-            })}
+            className={classNames(styles.button, className, styles[variant], styles[size], mods)}
             {...otherProps}
         >
             {children}
