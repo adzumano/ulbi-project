@@ -22,10 +22,10 @@ export const Navbar: FC<NavbarProps> = ({ className }) => {
     return (
         <nav className={classNames(styles.navbar, className)}>
             <Button variant={'clearInverted'} className={styles.links} size={'small'} onClick={onOpen}>
-                Войти
+                {t('logIn')}
             </Button>
             <Modal isOpen={isOpen} onClose={onClose}>
-                Войти
+                {t('logIn')}
             </Modal>
         </nav>
     )

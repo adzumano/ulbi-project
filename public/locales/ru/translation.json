@@ -3,5 +3,6 @@
   "main": "Главная",
   "about": "О нас",
   "lang": "English",
-  "shortLang": "Eng"
+  "shortLang": "Eng",
+  "logIn": "Войти"
 }
