@@ -13,7 +13,12 @@ export const LangSwitcher: FC<LangSwitcherProps> = (props) => {
 
     const onToggle = async () => await i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru')
     return (
-        <Button className={classNames(className)} variant={'clear'} onClick={onToggle} size={'small'}>
+        <Button
+            className={classNames(className)}
+            variant={'backgroundInverted'}
+            onClick={onToggle}
+            size={'small'}
+        >
             {t(short ? 'shortLang' : 'lang')}
         </Button>
     )
