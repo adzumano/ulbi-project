@@ -116,3 +116,9 @@ export const SquareSizeLarge: Story = {
         size: 'large',
     },
 }
+
+export const Disabled: Story = {
+    args: {
+        disabled: true,
+    },
+}

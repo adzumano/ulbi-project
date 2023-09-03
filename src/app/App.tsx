@@ -1,5 +1,7 @@
 import classNames from 'classnames'
-import { Suspense } from 'react'
+import { userActions } from 'entities/User'
+import { Suspense, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { useTheme } from 'shared/config/theme'
 import { Loader } from 'shared/ui/Loader/Loader'
 import { Navbar } from 'widgets/Navbar'
@@ -9,6 +11,11 @@ import { AppRouter } from './providers/router'
 
 const App = () => {
     const { theme } = useTheme()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(userActions.initAuthData())
+    }, [dispatch])
     return (
         <div className={classNames('app', theme)}>
             <Suspense fallback={<Loader />}>

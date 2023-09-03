@@ -1,6 +1,11 @@
 .button {
   cursor: pointer;
   padding: 10px 15px;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
 }
 
 .clear,

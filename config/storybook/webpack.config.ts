@@ -1,5 +1,5 @@
 import path from 'path'
-import { type Configuration } from 'webpack'
+import { type Configuration, DefinePlugin } from 'webpack'
 
 import { buildCssLoader } from '../build/loaders/buildCssLoader'
 import { buildSvgLoader } from '../build/loaders/buildSvgLoader'
@@ -18,6 +18,12 @@ export default ({ config }: { config: Configuration }) => {
     const fileLoaderRule: any = config.module?.rules?.find((rule: any) => rule.test.test('.svg'))
     fileLoaderRule.exclude = /\.svg$/
     config.module?.rules?.push(buildSvgLoader(), buildCssLoader(true))
+
+    config.plugins?.push(
+        new DefinePlugin({
+            _IS_DEV_: true,
+        }),
+    )
 
     return config
 }
