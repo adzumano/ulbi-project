@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { FC } from 'react'
+import { type FC, memo } from 'react'
 
 import styles from './Text.module.scss'
 
@@ -10,7 +10,7 @@ interface TextProps {
     text?: string
     variant?: TextVariant
 }
-export const Text: FC<TextProps> = (props) => {
+export const Text: FC<TextProps> = memo((props) => {
     const { className, title, text, variant = 'primary' } = props
     return (
         <div className={classNames(className, styles.textWrapper, styles[variant])}>
@@ -18,4 +18,4 @@ export const Text: FC<TextProps> = (props) => {
             {text ? <p className={styles.text}>{text}</p> : null}
         </div>
     )
-}
+})

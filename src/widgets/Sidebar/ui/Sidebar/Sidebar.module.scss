@@ -20,38 +20,10 @@
   bottom: 32px;
 }
 
-.items {
-  margin-left: 30px;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.item {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-}
-
-.icon {
-  fill: var(--secondary-color);
-}
-
-.link {
-  opacity: 1;
-  margin-left: 10px;
-}
-
 .collapsed {
   width: var(--sidebar-width-collapsed);
 
   .switcher {
     flex-direction: column;
-  }
-
-  .link {
-    opacity: 0;
-    transition: opacity 0.2s;
-    width: 0;
   }
 }

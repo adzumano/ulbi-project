@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { getAuthData, userActions } from 'entities/User'
 import { LoginModal } from 'features/AuthByUsername'
-import { type FC, useCallback, useState } from 'react'
+import { type FC, memo, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'shared/ui/Button/Button'
@@ -11,7 +11,7 @@ import styles from './Navbar.module.scss'
 interface NavbarProps {
     className?: string
 }
-export const Navbar: FC<NavbarProps> = ({ className }) => {
+export const Navbar: FC<NavbarProps> = memo(({ className }) => {
     const { t } = useTranslation()
     const [isOpen, setIsOpen] = useState(false)
     const authData = useSelector(getAuthData)
@@ -46,4 +46,4 @@ export const Navbar: FC<NavbarProps> = ({ className }) => {
             <LoginModal isOpen={isOpen} onClose={onClose} />
         </nav>
     )
-}
+})

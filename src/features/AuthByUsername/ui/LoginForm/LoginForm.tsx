@@ -1,7 +1,8 @@
 import classNames from 'classnames'
 import { type FC, memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { type ReducersList, useDynamicModuleLoader } from 'shared/hooks/useDynamicModuleLoader'
 import { Button } from 'shared/ui/Button/Button'
 import { Input } from 'shared/ui/Input/Input'
@@ -17,14 +18,15 @@ import styles from './LoginForm.module.scss'
 
 interface LoginFormProps {
     className?: string
+    onSuccess: () => void
 }
 
 const initialReducers: ReducersList = {
     loginForm: loginReducer,
 }
-const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
+const LoginForm: FC<LoginFormProps> = memo(({ className, onSuccess }) => {
     const { t } = useTranslation()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const username = useSelector(getLoginUsername)
     const password = useSelector(getLoginPassword)
     const isLoading = useSelector(getLoginIsLoading)
@@ -46,9 +48,12 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
         [dispatch],
     )
 
-    const onLoginClick = useCallback(() => {
-        dispatch(loginByUsername({ username, password }))
-    }, [dispatch, username, password])
+    const onLoginClick = useCallback(async () => {
+        const res = await dispatch(loginByUsername({ username, password }))
+        if (res.meta.requestStatus === 'fulfilled') {
+            onSuccess()
+        }
+    }, [dispatch, username, password, onSuccess])
     return (
         <div className={classNames(styles.loginForm, className)}>
             <Text title={'Форма авторизации'} />
