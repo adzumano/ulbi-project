@@ -56,7 +56,8 @@
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "error",
         "react/prop-types": "off",
-        "multiline-ternary": "off"
+        "multiline-ternary": "off",
+        "@typescript-eslint/no-dynamic-delete": "off"
     },
     "globals": {
         "_IS_DEV_": true

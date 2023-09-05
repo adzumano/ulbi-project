@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { StoreDecorator } from 'shared/config/storybook/decorators/StoreDecorator'
 
-import { LoginForm } from './LoginForm'
+import LoginForm from './LoginForm'
 
 const meta = {
     title: 'features/LoginForm',
@@ -17,7 +17,7 @@ export const Light: Story = {
     args: {},
     decorators: [
         StoreDecorator({
-            loginForm: { username: 'admin', password: '123' },
+            loginForm: { username: 'admin', password: '123', isLoading: false },
         }),
     ],
 }
@@ -25,7 +25,7 @@ export const Error: Story = {
     args: {},
     decorators: [
         StoreDecorator({
-            loginForm: { username: 'admin', password: '123', error: 'Error' },
+            loginForm: { username: 'admin', password: '123', error: 'Error', isLoading: false },
         }),
     ],
 }
