@@ -1,6 +1,7 @@
-import { type ReducersMapObject, configureStore } from '@reduxjs/toolkit'
+import { type CombinedState, type Reducer, type ReducersMapObject, configureStore } from '@reduxjs/toolkit'
 import { counterReducer } from 'entities/Counter'
 import { userReducer } from 'entities/User'
+import { $api } from 'shared/api/api'
 
 import { type StateSchema } from '../types/schema'
 import { createReducerManager } from './reducerManager'
@@ -17,10 +18,18 @@ export const createReduxStore = (
 
     const reducerManager = createReducerManager(rootReducer)
 
-    const store = configureStore<StateSchema>({
-        reducer: reducerManager.reduce,
+    const store = configureStore({
+        reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
         devTools: _IS_DEV_,
         preloadedState: initialState,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                thunk: {
+                    extraArgument: {
+                        api: $api,
+                    },
+                },
+            }),
     })
 
     // eslint-disable-next-line

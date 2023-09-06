@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": true,
-    "strict": false,
+    "strict": true,
     "baseUrl": ".",
     "paths": {
       "*": ["./src/*"]
@@ -25,6 +25,7 @@
     "./config/jest/setupTests.ts",
     "./config",
     "./src/**/*.ts",
-    "./src/**/*.tsx"
+    "./src/**/*.tsx",
+    "./webpack.config.ts"
   ]
 }

@@ -25,5 +25,14 @@
       "password": "123"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "firstname": "Марал",
+    "lastname": "Жаксылыкова",
+    "age": 24,
+    "currency": "KZT",
+    "country": "Казахстан",
+    "city": "Уральск",
+    "username": "admin",
+    "avatar": ""
+  }
 }

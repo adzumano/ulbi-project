@@ -60,6 +60,7 @@
         "@typescript-eslint/no-dynamic-delete": "off"
     },
     "globals": {
-        "_IS_DEV_": true
+        "_IS_DEV_": true,
+        "_API_": true
     }
 }

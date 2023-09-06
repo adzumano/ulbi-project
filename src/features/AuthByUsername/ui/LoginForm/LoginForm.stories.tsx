@@ -17,7 +17,7 @@ export const Light: Story = {
     args: {},
     decorators: [
         StoreDecorator({
-            loginForm: { username: 'admin', password: '123', isLoading: false },
+            loginForm: {},
         }),
     ],
 }
@@ -25,7 +25,7 @@ export const Error: Story = {
     args: {},
     decorators: [
         StoreDecorator({
-            loginForm: { username: 'admin', password: '123', error: 'Error', isLoading: false },
+            loginForm: { username: 'admin', password: '123', error: 'Error' },
         }),
     ],
 }
@@ -33,7 +33,7 @@ export const Loading: Story = {
     args: {},
     decorators: [
         StoreDecorator({
-            loginForm: { username: 'admin', password: '123', isLoading: true },
+            loginForm: { isLoading: true },
         }),
     ],
 }

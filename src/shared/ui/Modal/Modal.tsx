@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { type FC, type MouseEvent, useCallback, useEffect, useRef, useState } from 'react'
+import { type FC, type MouseEvent, MutableRefObject, useCallback, useEffect, useRef, useState } from 'react'
 import { useTheme } from 'shared/config/theme'
 import { Portal } from 'shared/ui/Portal/Portal'
 
@@ -15,13 +15,11 @@ interface KeyboardEvent {
     key: string
 }
 
-type TimerRef = ReturnType<typeof setTimeout>
-
 const ANIMATION_DELAY = 300
 export const Modal: FC<ModalProps> = (props) => {
     const { className, children, isOpen = false, onClose } = props
     const { theme } = useTheme()
-    const timerRef = useRef<TimerRef>()
+    const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>
     const [isClosing, setIsClosing] = useState<boolean>(false)
 
     const onOverlayClick = useCallback(() => {
@@ -52,7 +50,7 @@ export const Modal: FC<ModalProps> = (props) => {
             window.addEventListener('keydown', onKeyDown)
         }
         return () => {
-            clearTimeout(timerRef.current as TimerRef)
+            clearTimeout(timerRef.current)
             window.removeEventListener('keydown', onKeyDown)
         }
     }, [isOpen, onKeyDown])
