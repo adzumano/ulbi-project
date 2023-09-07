@@ -1,6 +1,12 @@
 import { type Country } from 'entities/Country'
 import { type Currency } from 'entities/Currency'
 
+export type ValidateProfileError =
+    | 'INCORRECT_USER_DATA'
+    | 'INCORRECT_AGE'
+    | 'INCORRECT_COUNTRY'
+    | 'NO_DATA'
+    | 'SERVER_ERROR'
 export interface Profile {
     firstname: string
     lastname: string
@@ -18,4 +24,5 @@ export interface ProfileSchema {
     isLoading: boolean
     error?: string
     readonly: boolean
+    validateErrors?: ValidateProfileError[]
 }

@@ -5,6 +5,7 @@ import {
     getProfileForm,
     getProfileIsLoading,
     getProfileIsReadonly,
+    getProfileValidateErrors,
     profileActions,
     profileReducer,
 } from 'entities/Profile'
@@ -12,6 +13,7 @@ import { useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { type ReducersList, useDynamicModuleLoader } from 'shared/hooks/useDynamicModuleLoader'
+import { Text } from 'shared/ui/Text/Text'
 
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader'
 
@@ -24,6 +26,7 @@ const ProfilePage = () => {
     const isLoading = useSelector(getProfileIsLoading)
     const error = useSelector(getProfileError)
     const readonly = useSelector(getProfileIsReadonly)
+    const validateErrors = useSelector(getProfileValidateErrors)
 
     const onChangeFirstName = useCallback(
         (value: string) => {
@@ -88,6 +91,9 @@ const ProfilePage = () => {
     return (
         <div>
             <ProfilePageHeader />
+            {validateErrors?.length > 0
+                ? validateErrors.map((err) => <Text key={err} variant={'error'} text={err} />)
+                : null}
             <ProfileCard
                 data={formData}
                 isLoading={isLoading}
