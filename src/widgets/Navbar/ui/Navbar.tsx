@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { getAuthData, userActions } from 'entities/User'
+import { getUserAuthData, userActions } from 'entities/User'
 import { LoginModal } from 'features/AuthByUsername'
 import { type FC, memo, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -14,7 +14,7 @@ interface NavbarProps {
 export const Navbar: FC<NavbarProps> = memo(({ className }) => {
     const { t } = useTranslation()
     const [isOpen, setIsOpen] = useState(false)
-    const authData = useSelector(getAuthData)
+    const authData = useSelector(getUserAuthData)
     const dispatch = useDispatch()
 
     const onOpen = useCallback(() => {

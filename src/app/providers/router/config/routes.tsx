@@ -5,7 +5,11 @@ import { ProfilePage } from 'pages/ProfilePage'
 import { type RouteProps } from 'react-router-dom'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 
-export const routes: RouteProps[] = [
+type AppRoutesProps = RouteProps & {
+    authOnly?: boolean
+}
+
+export const routes: AppRoutesProps[] = [
     {
         path: RoutePath.main,
         element: <MainPage />,
@@ -17,6 +21,7 @@ export const routes: RouteProps[] = [
     {
         path: RoutePath.profile,
         element: <ProfilePage />,
+        authOnly: true,
     },
     {
         path: RoutePath.not_found,

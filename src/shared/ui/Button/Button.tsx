@@ -3,7 +3,14 @@ import { type ButtonHTMLAttributes, type FC } from 'react'
 
 import styles from './Button.module.scss'
 
-type ButtonVariant = 'clear' | 'clearInverted' | 'primary' | 'outline' | 'background' | 'backgroundInverted'
+type ButtonVariant =
+    | 'clear'
+    | 'clearInverted'
+    | 'primary'
+    | 'outline'
+    | 'background'
+    | 'backgroundInverted'
+    | 'outlineRed'
 
 type ButtonSize = 'small' | 'medium' | 'large'
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
