@@ -68,7 +68,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
             <div className={styles.data}>
                 {data?.avatar ? (
                     <div className={styles.avatarWrapper}>
-                        <Avatar src={data?.avatar} alt={data.username} objectFit={'cover'} />
+                        <Avatar src={data?.avatar} alt={'avatar'} objectFit={'cover'} />
                     </div>
                 ) : null}
                 <div className={styles.field}>

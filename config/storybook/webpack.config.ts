@@ -23,6 +23,7 @@ export default ({ config }: { config: Configuration }) => {
         new DefinePlugin({
             _IS_DEV_: JSON.stringify(true),
             _API_: JSON.stringify(''),
+            _PROJECT_: JSON.stringify('storybook'),
         }),
     )
 

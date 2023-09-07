@@ -86,7 +86,9 @@ const ProfilePage = () => {
 
     useDynamicModuleLoader({ reducers })
     useEffect(() => {
-        void dispatch(fetchProfileData())
+        if (_PROJECT_ !== 'storybook') {
+            void dispatch(fetchProfileData())
+        }
     }, [dispatch])
     return (
         <div>

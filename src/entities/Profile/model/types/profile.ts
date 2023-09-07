@@ -8,14 +8,14 @@ export type ValidateProfileError =
     | 'NO_DATA'
     | 'SERVER_ERROR'
 export interface Profile {
-    firstname: string
-    lastname: string
-    age: number
-    currency: Currency
-    country: Country
-    city: string
-    username: string
-    avatar: string
+    firstname?: string
+    lastname?: string
+    age?: number
+    currency?: Currency
+    country?: Country
+    city?: string
+    username?: string
+    avatar?: string
 }
 
 export interface ProfileSchema {

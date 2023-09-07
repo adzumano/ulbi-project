@@ -1,19 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { ThemeDecorator } from 'shared/config/storybook/decorators/ThemeDecorator'
 
-import AvatarImg from '../../assets/tests/storybook.png'
-import { Avatar } from './Avatar'
+import { Label } from './Label'
 
 const meta = {
-    title: 'shared/Avatar',
-    component: Avatar,
+    title: 'shared/Label',
+    component: Label,
     tags: ['autodocs'],
     argTypes: {},
     args: {
-        src: AvatarImg,
-        alt: 'avatar',
+        children: 'Label',
     },
-} satisfies Meta<typeof Avatar>
+} satisfies Meta<typeof Label>
 
 export default meta
 type Story = StoryObj<typeof meta>
