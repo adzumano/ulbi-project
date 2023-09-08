@@ -1,7 +1,7 @@
 import classNames from 'classnames'
-import { userActions } from 'entities/User'
+import { getUserMounted, userActions } from 'entities/User'
 import { Suspense, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTheme } from 'shared/config/theme'
 import { Loader } from 'shared/ui/Loader/Loader'
 import { Navbar } from 'widgets/Navbar'
@@ -12,6 +12,7 @@ import { AppRouter } from './providers/router'
 const App = () => {
     const { theme } = useTheme()
     const dispatch = useDispatch()
+    const mounted = useSelector(getUserMounted)
 
     useEffect(() => {
         dispatch(userActions.initAuthData())
@@ -22,7 +23,7 @@ const App = () => {
                 <Navbar />
                 <div className={'content-page'}>
                     <Sidebar />
-                    <AppRouter />
+                    {mounted ? <AppRouter /> : null}
                 </div>
             </Suspense>
         </div>
