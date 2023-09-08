@@ -61,3 +61,19 @@ export const Error: Story = {
         variant: 'error',
     },
 }
+
+export const SmallSize: Story = {
+    args: {
+        title: 'Title',
+        text: 'text',
+        size: 'small',
+    },
+}
+
+export const MediumSize: Story = {
+    args: {
+        title: 'Title',
+        text: 'text',
+        size: 'medium',
+    },
+}
