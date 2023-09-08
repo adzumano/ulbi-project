@@ -1,4 +1,6 @@
 import { AboutPage } from 'pages/AboutPage'
+import { ArticleDetailPage } from 'pages/ArticleDetailPage'
+import { ArticlesPage } from 'pages/ArticlesPage'
 import { MainPage } from 'pages/MainPage'
 import { NotFoundPage } from 'pages/NotFoundPage'
 import { ProfilePage } from 'pages/ProfilePage'
@@ -21,6 +23,16 @@ export const routes: AppRoutesProps[] = [
     {
         path: RoutePath.profile,
         element: <ProfilePage />,
+        authOnly: true,
+    },
+    {
+        path: RoutePath.articles,
+        element: <ArticlesPage />,
+        authOnly: true,
+    },
+    {
+        path: `${RoutePath.articles}/:id`,
+        element: <ArticleDetailPage />,
         authOnly: true,
     },
     {
