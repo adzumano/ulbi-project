@@ -1,13 +1,12 @@
 import classNames from 'classnames'
-import { ArticleCodeBlockComponent } from 'entities/Article/ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent'
-import { ArticleImageBlockComponent } from 'entities/Article/ui/ArticleImageBlockComponent/ArticleImageBlockComponent'
-import { ArticleTextBlockComponent } from 'entities/Article/ui/ArticleTextBlockComponent/ArticleTextBlockComponent'
-import { type FC, memo, useCallback, useEffect } from 'react'
+import { ArticleBlockList } from 'entities/Article/ui/ArticleBlockList/ArticleBlockList'
+import { type FC, memo, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import CalendarIcon from 'shared/assets/icons/calendar.svg'
 import ViewIcon from 'shared/assets/icons/view.svg'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { type ReducersList, useDynamicModuleLoader } from 'shared/hooks/useDynamicModuleLoader'
+import { useInitialEffect } from 'shared/hooks/useInitialEffect'
 import { Avatar } from 'shared/ui/Avatar/Avatar'
 import { Icon } from 'shared/ui/Icon/Icon'
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton'
@@ -20,7 +19,6 @@ import {
 } from '../../model/selectors/getArticleDetailsData'
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById'
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice'
-import { ArticleBlock } from '../../model/types/article'
 import styles from './ArticleDetails.module.scss'
 
 interface ArticleDetailsProps {
@@ -38,24 +36,9 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo(({ className, id }) 
     const error = useSelector(getArticleDetailsError)
     const article = useSelector(getArticleDetailsData)
 
-    const renderBlock = useCallback((block: ArticleBlock) => {
-        switch (block.type) {
-            case 'code':
-                return <ArticleCodeBlockComponent className={styles.block} block={block} />
-            case 'text':
-                return <ArticleTextBlockComponent className={styles.block} block={block} />
-            case 'image':
-                return <ArticleImageBlockComponent className={styles.block} block={block} />
-            default:
-                return null
-        }
-    }, [])
-
     useDynamicModuleLoader({ reducers })
-    useEffect(() => {
-        if (_PROJECT_ !== 'storybook') {
-            void dispatch(fetchArticleById(id))
-        }
+    useInitialEffect(() => {
+        void dispatch(fetchArticleById(id))
     }, [id, dispatch])
 
     let content
@@ -93,7 +76,7 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo(({ className, id }) 
                     <Icon className={styles.icon} Svg={CalendarIcon} />
                     <Text text={article?.createdAt} />
                 </div>
-                {article?.blocks.map(renderBlock)}
+                <ArticleBlockList blocks={article?.blocks} />
             </>
         )
     }

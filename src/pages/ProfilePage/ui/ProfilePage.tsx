@@ -9,10 +9,11 @@ import {
     profileActions,
     profileReducer,
 } from 'entities/Profile'
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { type ReducersList, useDynamicModuleLoader } from 'shared/hooks/useDynamicModuleLoader'
+import { useInitialEffect } from 'shared/hooks/useInitialEffect'
 import { Text } from 'shared/ui/Text/Text'
 
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader'
@@ -85,10 +86,8 @@ const ProfilePage = () => {
     )
 
     useDynamicModuleLoader({ reducers })
-    useEffect(() => {
-        if (_PROJECT_ !== 'storybook') {
-            void dispatch(fetchProfileData())
-        }
+    useInitialEffect(() => {
+        void dispatch(fetchProfileData())
     }, [dispatch])
     return (
         <div>
