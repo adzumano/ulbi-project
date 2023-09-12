@@ -16,5 +16,5 @@ export const SidebarList: FC<SidebarListProps> = memo(({ collapsed }) => {
             sidebarItemsList.map((item) => <SidebarItem key={item.path} item={item} collapsed={collapsed} />),
         [collapsed, sidebarItemsList],
     )
-    return <div className={styles.list}>{itemsList}</div>
+    return <nav className={styles.list}>{itemsList}</nav>
 })

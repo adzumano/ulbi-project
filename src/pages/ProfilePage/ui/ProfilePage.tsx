@@ -16,6 +16,7 @@ import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { type ReducersList, useDynamicModuleLoader } from 'shared/hooks/useDynamicModuleLoader'
 import { useInitialEffect } from 'shared/hooks/useInitialEffect'
 import { Text } from 'shared/ui/Text/Text'
+import { Page } from 'widgets/Page'
 
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader'
 
@@ -94,7 +95,7 @@ const ProfilePage = () => {
         }
     }, [dispatch])
     return (
-        <div>
+        <Page>
             <ProfilePageHeader />
             {validateErrors?.length > 0
                 ? validateErrors.map((err) => <Text key={err} variant={'error'} text={err} />)
@@ -113,7 +114,7 @@ const ProfilePage = () => {
                 onChangeCountry={onChangeCountry}
                 onChangeCurrency={onChangeCurrency}
             />
-        </div>
+        </Page>
     )
 }
 

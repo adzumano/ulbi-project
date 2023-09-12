@@ -21,10 +21,10 @@ const App = () => {
         <div className={classNames('app', theme)}>
             <Suspense fallback={<Loader />}>
                 <Navbar />
-                <div className={'content-page'}>
+                <main className={'content-page'}>
                     <Sidebar />
                     {mounted ? <AppRouter /> : null}
-                </div>
+                </main>
             </Suspense>
         </div>
     )

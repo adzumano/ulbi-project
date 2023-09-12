@@ -21,10 +21,6 @@ const getSkeletons = (view: ArticleView) =>
 export const ArticleList: FC<ArticleListProps> = memo((props) => {
     const { className, articles = [], view = 'block', isLoading = false } = props
 
-    if (isLoading) {
-        return <div className={classNames(styles.list, className, styles[view])}>{getSkeletons(view)}</div>
-    }
-
     const renderArticle = (article: Article) => (
         <ArticleItem key={article.id} className={styles.card} article={article} view={view} />
     )
@@ -32,6 +28,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props) => {
     return (
         <div className={classNames(styles.list, className, styles[view])}>
             {articles.length > 0 ? articles.map(renderArticle) : null}
+            {isLoading ? getSkeletons(view) : null}
         </div>
     )
 })

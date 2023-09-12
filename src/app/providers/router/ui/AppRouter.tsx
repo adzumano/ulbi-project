@@ -7,7 +7,7 @@ import { type AppRoutesProps, routes } from '../config/routes'
 
 export const AppRouter = memo(() => {
     const renderWithWrapper = useCallback(({ path, element, authOnly }: AppRoutesProps) => {
-        const elementWrapper = <div className={'page-wrapper'}>{element}</div>
+        const elementWrapper = <>{element}</>
         return (
             <Route
                 key={path}

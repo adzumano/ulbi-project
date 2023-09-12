@@ -1,12 +1,14 @@
 import classNames from 'classnames'
 import { ArticleList, type ArticleView } from 'entities/Article'
 import { ArticleViewSwitcher } from 'features/ArticleViewSwitcher'
+import { fetchNextArticle } from 'pages/ArticlesPage/model/services/fetchNextArticle/fetchNextArticle'
 import { type FC, memo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { type ReducersList, useDynamicModuleLoader } from 'shared/hooks/useDynamicModuleLoader'
 import { useInitialEffect } from 'shared/hooks/useInitialEffect'
 import { Text } from 'shared/ui/Text/Text'
+import { Page } from 'widgets/Page'
 
 import {
     getArticles,
@@ -32,11 +34,11 @@ const ArticlesPage: FC<ArticlesPageProps> = memo(({ className }) => {
     const isLoading = useSelector(getArticlesIsLoading)
     const error = useSelector(getArticlesError)
     const view = useSelector(getArticlesView)
-    console.log(view)
+
     useDynamicModuleLoader({ reducers })
     useInitialEffect(() => {
-        void dispatch(fetchArticles())
         dispatch(articlesActions.initState())
+        void dispatch(fetchArticles({ page: 1 }))
     }, [dispatch])
 
     const onChangeView = useCallback(
@@ -46,14 +48,18 @@ const ArticlesPage: FC<ArticlesPageProps> = memo(({ className }) => {
         [dispatch],
     )
 
+    const onLoadNextPart = useCallback(() => {
+        void dispatch(fetchNextArticle())
+    }, [dispatch])
+
     if (error) {
         return <Text text={error} />
     }
     return (
-        <div className={classNames(styles.page, className)}>
+        <Page className={classNames(styles.page, className)} onScrollEnd={onLoadNextPart}>
             <ArticleViewSwitcher view={view} onViewClick={onChangeView} />
             <ArticleList articles={articles} view={view} isLoading={isLoading} />
-        </div>
+        </Page>
     )
 })
 export default ArticlesPage

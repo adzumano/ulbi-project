@@ -11,6 +11,7 @@ import { type ReducersList, useDynamicModuleLoader } from 'shared/hooks/useDynam
 import { useInitialEffect } from 'shared/hooks/useInitialEffect'
 import { Button } from 'shared/ui/Button/Button'
 import { Text } from 'shared/ui/Text/Text'
+import { Page } from 'widgets/Page'
 
 import {
     getArticleDetailComments,
@@ -60,7 +61,7 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = memo(({ className }) => {
     }
 
     return (
-        <div className={classNames(styles.page, className)}>
+        <Page className={classNames(styles.page, className)}>
             <Button variant={'outline'} size={'small'} onClick={onBack}>
                 Назад
             </Button>
@@ -68,7 +69,7 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = memo(({ className }) => {
             <Text title={'Комментарий'} />
             <AddNewCommentForm onSendComment={onSendComment} />
             <CommentList isLoading={isLoading} comments={comments} />
-        </div>
+        </Page>
     )
 })
 
