@@ -12,6 +12,7 @@ import { type UserSchema } from 'entities/User'
 import { type AddNewCommentSchema } from 'features/AddNewComment'
 import { type LoginSchema } from 'features/AuthByUsername'
 import { type ArticleDetailCommentsSchema } from 'pages/ArticleDetailPage'
+import { type ArticlesSchema } from 'pages/ArticlesPage'
 
 export interface StateSchema {
     user: UserSchema
@@ -22,6 +23,7 @@ export interface StateSchema {
     articleDetails?: ArticleDetailSchema
     articleDetailsComments?: ArticleDetailCommentsSchema
     addNewComment?: AddNewCommentSchema
+    articles?: ArticlesSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

@@ -1,94 +1,58 @@
 import classNames from 'classnames'
-import { Article, ArticleList } from 'entities/Article'
-import { type FC, memo } from 'react'
+import { ArticleList, type ArticleView } from 'entities/Article'
+import { ArticleViewSwitcher } from 'features/ArticleViewSwitcher'
+import { type FC, memo, useCallback } from 'react'
+import { useSelector } from 'react-redux'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { type ReducersList, useDynamicModuleLoader } from 'shared/hooks/useDynamicModuleLoader'
+import { useInitialEffect } from 'shared/hooks/useInitialEffect'
+import { Text } from 'shared/ui/Text/Text'
 
+import {
+    getArticles,
+    getArticlesError,
+    getArticlesIsLoading,
+    getArticlesView,
+} from '../model/selectors/articleSelectors'
+import { fetchArticles } from '../model/services/fetchArticles/fetchArticles'
+import { articlesActions, articlesReducer } from '../model/slice/articlesSlice'
 import styles from './ArticlesPage.module.scss'
 
 interface ArticlesPageProps {
     className?: string
 }
 
-const article = {
-    id: 1,
-    title: 'JavaScript news',
-    subtitle: 'Что нового в JavaScript за 2023 году?',
-    img: 'https://thisinterestsme.com/wp-content/uploads/2019/05/javascript-tutorials.png',
-    views: 1022,
-    createdAt: '03.05.1999',
-    type: ['IT', 'SCIENCE', 'DARK', 'LIGHT'],
-    user: {
-        id: 1,
-        username: 'pulsar',
-        avatar: 'https://w7.pngwing.com/pngs/481/915/png-transparent-computer-icons-user-avatar-woman-avatar-computer-business-conversation.png',
-    },
-    blocks: [
-        {
-            id: 1,
-            type: 'text',
-            title: 'Заголовок этого блока',
-            paragraphs: [
-                'Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.',
-                'JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы.',
-                'Существуют и другие способы запуска JS-кода в браузере. Так, если говорить об обычном использовании программ на JavaScript, они загружаются в браузер для обеспечения работы веб-страниц. Как правило, код оформляют в виде отдельных файлов с расширением .js, которые подключают к веб-страницам, но программный код можно включать и непосредственно в код страницы. Всё это делается с помощью тега <script>. Когда браузер обнаруживает такой код, он выполняет его. Подробности о теге script можно посмотреть на сайте w3school.com. В частности, рассмотрим пример, демонстрирующий работу с веб-страницей средствами JavaScript, приведённый на этом ресурсе. Этот пример можно запустить и средствами данного ресурса (ищите кнопку Try it Yourself), но мы поступим немного иначе. А именно, создадим в каком-нибудь текстовом редакторе (например — в VS Code или в Notepad++) новый файл, который назовём hello.html, и добавим в него следующий код:',
-            ],
-        },
-        {
-            id: 4,
-            type: 'code',
-            code: '<!DOCTYPE html>\n<html>\n  <body>\n    <p id="hello"></p>\n\n    <script>\n      document.getElementById("hello").innerHTML = "Hello, world!";\n    </script>\n  </body>\n</html>;',
-        },
-        {
-            id: 5,
-            type: 'text',
-            title: 'Заголовок этого блока',
-            paragraphs: [
-                'Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.',
-                'Существуют и другие способы запуска JS-кода в браузере. Так, если говорить об обычном использовании программ на JavaScript, они загружаются в браузер для обеспечения работы веб-страниц. Как правило, код оформляют в виде отдельных файлов с расширением .js, которые подключают к веб-страницам, но программный код можно включать и непосредственно в код страницы. Всё это делается с помощью тега <script>. Когда браузер обнаруживает такой код, он выполняет его. Подробности о теге script можно посмотреть на сайте w3school.com. В частности, рассмотрим пример, демонстрирующий работу с веб-страницей средствами JavaScript, приведённый на этом ресурсе. Этот пример можно запустить и средствами данного ресурса (ищите кнопку Try it Yourself), но мы поступим немного иначе. А именно, создадим в каком-нибудь текстовом редакторе (например — в VS Code или в Notepad++) новый файл, который назовём hello.html, и добавим в него следующий код:',
-            ],
-        },
-        {
-            id: 2,
-            type: 'image',
-            src: 'https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png',
-            title: 'Рисунок 1 - скриншот сайта',
-        },
-        {
-            id: 3,
-            type: 'code',
-            code: "const path = require('path');\n\nconst server = jsonServer.create();\n\nconst router = jsonServer.router(path.resolve(__dirname, 'db.json'));\n\nserver.use(jsonServer.defaults({}));\nserver.use(jsonServer.bodyParser);",
-        },
-        {
-            id: 7,
-            type: 'text',
-            title: 'Заголовок этого блока',
-            paragraphs: [
-                'JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы.',
-                'Существуют и другие способы запуска JS-кода в браузере. Так, если говорить об обычном использовании программ на JavaScript, они загружаются в браузер для обеспечения работы веб-страниц. Как правило, код оформляют в виде отдельных файлов с расширением .js, которые подключают к веб-страницам, но программный код можно включать и непосредственно в код страницы. Всё это делается с помощью тега <script>. Когда браузер обнаруживает такой код, он выполняет его. Подробности о теге script можно посмотреть на сайте w3school.com. В частности, рассмотрим пример, демонстрирующий работу с веб-страницей средствами JavaScript, приведённый на этом ресурсе. Этот пример можно запустить и средствами данного ресурса (ищите кнопку Try it Yourself), но мы поступим немного иначе. А именно, создадим в каком-нибудь текстовом редакторе (например — в VS Code или в Notepad++) новый файл, который назовём hello.html, и добавим в него следующий код:',
-            ],
-        },
-        {
-            id: 8,
-            type: 'image',
-            src: 'https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png',
-            title: 'Рисунок 1 - скриншот сайта',
-        },
-        {
-            id: 9,
-            type: 'text',
-            title: 'Заголовок этого блока',
-            paragraphs: [
-                'JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы.',
-            ],
-        },
-    ],
-} as any
-
-const articles = new Array(16).fill(0).map((_, index) => ({ ...article, id: index }))
+const reducers: ReducersList = {
+    articles: articlesReducer,
+}
 
 const ArticlesPage: FC<ArticlesPageProps> = memo(({ className }) => {
+    const dispatch = useAppDispatch()
+    const articles = useSelector(getArticles.selectAll)
+    const isLoading = useSelector(getArticlesIsLoading)
+    const error = useSelector(getArticlesError)
+    const view = useSelector(getArticlesView)
+    console.log(view)
+    useDynamicModuleLoader({ reducers })
+    useInitialEffect(() => {
+        void dispatch(fetchArticles())
+        dispatch(articlesActions.initState())
+    }, [dispatch])
+
+    const onChangeView = useCallback(
+        (view: ArticleView) => {
+            dispatch(articlesActions.setView(view))
+        },
+        [dispatch],
+    )
+
+    if (error) {
+        return <Text text={error} />
+    }
     return (
         <div className={classNames(styles.page, className)}>
-            <ArticleList articles={articles} view={'block'} isLoading={false} />
+            <ArticleViewSwitcher view={view} onViewClick={onChangeView} />
+            <ArticleList articles={articles} view={view} isLoading={isLoading} />
         </div>
     )
 })
