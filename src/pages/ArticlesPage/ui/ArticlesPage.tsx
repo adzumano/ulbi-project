@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import { ArticleList, type ArticleView } from 'entities/Article'
 import { ArticleViewSwitcher } from 'features/ArticleViewSwitcher'
-import { fetchNextArticle } from 'pages/ArticlesPage/model/services/fetchNextArticle/fetchNextArticle'
 import { type FC, memo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
@@ -16,7 +15,8 @@ import {
     getArticlesIsLoading,
     getArticlesView,
 } from '../model/selectors/articleSelectors'
-import { fetchArticles } from '../model/services/fetchArticles/fetchArticles'
+import { fetchNextArticles } from '../model/services/fetchNextArticles/fetchNextArticles'
+import { initArticles } from '../model/services/initArticles/initArticles'
 import { articlesActions, articlesReducer } from '../model/slice/articlesSlice'
 import styles from './ArticlesPage.module.scss'
 
@@ -35,10 +35,9 @@ const ArticlesPage: FC<ArticlesPageProps> = memo(({ className }) => {
     const error = useSelector(getArticlesError)
     const view = useSelector(getArticlesView)
 
-    useDynamicModuleLoader({ reducers })
+    useDynamicModuleLoader({ reducers, removeAfterUnmount: false })
     useInitialEffect(() => {
-        dispatch(articlesActions.initState())
-        void dispatch(fetchArticles({ page: 1 }))
+        void dispatch(initArticles())
     }, [dispatch])
 
     const onChangeView = useCallback(
@@ -49,7 +48,7 @@ const ArticlesPage: FC<ArticlesPageProps> = memo(({ className }) => {
     )
 
     const onLoadNextPart = useCallback(() => {
-        void dispatch(fetchNextArticle())
+        void dispatch(fetchNextArticles())
     }, [dispatch])
 
     if (error) {

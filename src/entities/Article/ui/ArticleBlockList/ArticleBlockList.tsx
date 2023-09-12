@@ -15,11 +15,11 @@ export const ArticleBlockList: FC<BlockListProps> = memo((props) => {
     const renderBlock = useCallback((block: ArticleBlock) => {
         switch (block.type) {
             case 'code':
-                return <ArticleCodeBlockComponent className={styles.block} block={block} />
+                return <ArticleCodeBlockComponent key={block.id} className={styles.block} block={block} />
             case 'text':
-                return <ArticleTextBlockComponent className={styles.block} block={block} />
+                return <ArticleTextBlockComponent key={block.id} className={styles.block} block={block} />
             case 'image':
-                return <ArticleImageBlockComponent className={styles.block} block={block} />
+                return <ArticleImageBlockComponent key={block.id} className={styles.block} block={block} />
             default:
                 return null
         }

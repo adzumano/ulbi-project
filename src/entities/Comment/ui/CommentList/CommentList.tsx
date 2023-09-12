@@ -16,12 +16,12 @@ export const CommentList: FC<CommentListProps> = memo((props) => {
     const { className, isLoading, comments = [] } = props
     return (
         <div className={classNames(styles.list, className)}>
-            {comments.length > 0 ? (
-                comments.map((comment) => {
+            {comments[0] ? (
+                comments.map((comment, index) => {
                     return (
                         <CommentCard
+                            key={comment.id}
                             className={styles.card}
-                            key={comment?.id}
                             comment={comment}
                             isLoading={isLoading}
                         />

@@ -14,6 +14,7 @@ const initialState = articlesAdapter.getInitialState<ArticlesSchema>({
     view: 'block',
     page: 1,
     hasMore: true,
+    init: false,
 })
 export const articlesSlice = createSlice({
     name: 'articles',
@@ -27,6 +28,7 @@ export const articlesSlice = createSlice({
             const view = localStorage.getItem(ARTICLE_VIEW_STORAGE_KEY) as ArticleView
             state.view = view
             state.limit = view === 'block' ? 4 : 9
+            state.init = true
         },
         setPage: (state, action: PayloadAction<number>) => {
             state.page = action.payload

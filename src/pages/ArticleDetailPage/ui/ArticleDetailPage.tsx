@@ -42,7 +42,6 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = memo(({ className }) => {
     useDynamicModuleLoader({ reducers })
     useInitialEffect(() => {
         void dispatch(fetchCommentsByArticleId(String(id)))
-        console.log('ok')
     }, [dispatch])
 
     const onSendComment = useCallback(
