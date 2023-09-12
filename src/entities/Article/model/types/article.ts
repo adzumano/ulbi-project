@@ -1,3 +1,5 @@
+import { type User } from 'entities/User'
+
 export type ArticleBlockType = 'text' | 'code' | 'image'
 export interface ArticleBlockBase {
     id: string
@@ -21,6 +23,8 @@ export interface ArticleTextBlock extends ArticleBlockBase {
 export type ArticleType = 'IT' | 'SCIENCE' | 'ECONOMICS'
 export type ArticleBlock = ArticleCodeBlock | ArticleImageBlock | ArticleTextBlock
 
+export type ArticleView = 'grid' | 'block'
+
 export interface Article {
     id: string
     title: string
@@ -29,5 +33,6 @@ export interface Article {
     views: number
     createdAt: string
     type: ArticleType[]
+    user: User
     blocks: ArticleBlock[]
 }

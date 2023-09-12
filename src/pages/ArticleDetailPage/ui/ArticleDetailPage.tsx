@@ -4,10 +4,12 @@ import { CommentList } from 'entities/Comment'
 import { AddNewCommentForm } from 'features/AddNewComment'
 import { type FC, memo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { type ReducersList, useDynamicModuleLoader } from 'shared/hooks/useDynamicModuleLoader'
 import { useInitialEffect } from 'shared/hooks/useInitialEffect'
+import { Button } from 'shared/ui/Button/Button'
 import { Text } from 'shared/ui/Text/Text'
 
 import {
@@ -34,6 +36,7 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = memo(({ className }) => {
     const isLoading = useSelector(getArticleDetailCommentsIsLoading)
     const error = useSelector(getArticleDetailCommentsError)
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
     useDynamicModuleLoader({ reducers })
     useInitialEffect(() => {
@@ -48,12 +51,19 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = memo(({ className }) => {
         [dispatch],
     )
 
+    const onBack = useCallback(() => {
+        navigate(RoutePath.articles)
+    }, [navigate])
+
     if (!id) {
         return <div>Статья не найдена</div>
     }
 
     return (
         <div className={classNames(styles.page, className)}>
+            <Button variant={'outline'} size={'small'} onClick={onBack}>
+                Назад
+            </Button>
             <ArticleDetails id={id} />
             <Text title={'Комментарий'} />
             <AddNewCommentForm onSendComment={onSendComment} />

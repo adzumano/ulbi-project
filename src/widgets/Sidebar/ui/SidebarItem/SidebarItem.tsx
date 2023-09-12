@@ -4,8 +4,8 @@ import { type FC, memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { AppLink } from 'shared/ui/AppLink/AppLink'
-import { type SidebarItemType } from 'widgets/Sidebar/model/item'
 
+import { type SidebarItemType } from '../../model/types/sidebar'
 import styles from './SidebarItem.module.scss'
 
 interface SidebarItemProps {
