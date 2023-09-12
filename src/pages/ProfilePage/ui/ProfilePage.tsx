@@ -11,6 +11,7 @@ import {
 } from 'entities/Profile'
 import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { type ReducersList, useDynamicModuleLoader } from 'shared/hooks/useDynamicModuleLoader'
 import { useInitialEffect } from 'shared/hooks/useInitialEffect'
@@ -28,6 +29,7 @@ const ProfilePage = () => {
     const error = useSelector(getProfileError)
     const readonly = useSelector(getProfileIsReadonly)
     const validateErrors = useSelector(getProfileValidateErrors)
+    const { id } = useParams()
 
     const onChangeFirstName = useCallback(
         (value: string) => {
@@ -87,7 +89,9 @@ const ProfilePage = () => {
 
     useDynamicModuleLoader({ reducers })
     useInitialEffect(() => {
-        void dispatch(fetchProfileData())
+        if (id) {
+            void dispatch(fetchProfileData(id))
+        }
     }, [dispatch])
     return (
         <div>

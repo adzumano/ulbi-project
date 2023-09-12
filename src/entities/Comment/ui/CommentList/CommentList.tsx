@@ -18,7 +18,6 @@ export const CommentList: FC<CommentListProps> = memo((props) => {
         <div className={classNames(styles.list, className)}>
             {comments.length > 0 ? (
                 comments.map((comment) => {
-                    console.log(comment)
                     return (
                         <CommentCard
                             className={styles.card}

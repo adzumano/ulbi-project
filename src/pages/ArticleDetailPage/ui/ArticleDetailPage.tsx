@@ -1,8 +1,8 @@
 import classNames from 'classnames'
 import { ArticleDetails } from 'entities/Article'
 import { CommentList } from 'entities/Comment'
-import { fetchCommentsByArticleId } from 'pages/ArticleDetailPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
-import { type FC, memo } from 'react'
+import { AddNewCommentForm } from 'features/AddNewComment'
+import { type FC, memo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
@@ -15,6 +15,8 @@ import {
     getArticleDetailCommentsError,
     getArticleDetailCommentsIsLoading,
 } from '../model/selectors/getArticleDetailComments'
+import { addNewCommentArticle } from '../model/services/addNewCommentArticle/addNewCommentArticle'
+import { fetchCommentsByArticleId } from '../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
 import { articleDetailCommentsReducer } from '../model/slice/articleDetailCommentsSlice'
 import styles from './ArticleDetailPage.module.scss'
 
@@ -39,6 +41,13 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = memo(({ className }) => {
         console.log('ok')
     }, [dispatch])
 
+    const onSendComment = useCallback(
+        (text: string) => {
+            void dispatch(addNewCommentArticle(text))
+        },
+        [dispatch],
+    )
+
     if (!id) {
         return <div>Статья не найдена</div>
     }
@@ -47,6 +56,7 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = memo(({ className }) => {
         <div className={classNames(styles.page, className)}>
             <ArticleDetails id={id} />
             <Text title={'Комментарий'} />
+            <AddNewCommentForm onSendComment={onSendComment} />
             <CommentList isLoading={isLoading} comments={comments} />
         </div>
     )

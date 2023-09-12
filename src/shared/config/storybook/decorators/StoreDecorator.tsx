@@ -3,6 +3,7 @@ import { type StoryObj } from '@storybook/react'
 import { type StateSchema, StoreProvider } from 'app/providers/StoreProvider'
 import { articleDetailsReducer } from 'entities/Article'
 import { profileReducer } from 'entities/Profile'
+import { addNewCommentReducer } from 'features/AddNewComment'
 import { loginReducer } from 'features/AuthByUsername'
 import { articleDetailCommentsReducer } from 'pages/ArticleDetailPage'
 import { type FC } from 'react'
@@ -13,6 +14,7 @@ const defaultAsyncReducers: ReducersList = {
     profile: profileReducer,
     articleDetails: articleDetailsReducer,
     articleDetailsComments: articleDetailCommentsReducer,
+    addNewComment: addNewCommentReducer,
 }
 export const StoreDecorator =
     (state: DeepPartial<StateSchema>, asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>) =>

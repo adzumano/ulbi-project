@@ -19,7 +19,9 @@
       "img": "https://thisinterestsme.com/wp-content/uploads/2019/05/javascript-tutorials.png",
       "views": 1022,
       "createdAt": "03.05.1999",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": 1,
@@ -100,6 +102,36 @@
       "text": "some comment 3",
       "articleId": 1,
       "userId": 1
+    },
+    {
+      "articleId": 1,
+      "userId": 1,
+      "text": "add new COmment form for test ",
+      "id": 3
+    },
+    {
+      "articleId": 1,
+      "userId": 2,
+      "text": "djsandaskjdnasknda",
+      "id": 4
+    },
+    {
+      "articleId": 1,
+      "userId": 2,
+      "text": "djsandaskjdnasknda321321",
+      "id": 5
+    },
+    {
+      "articleId": 1,
+      "userId": 1,
+      "text": "dsadsadsadas",
+      "id": 6
+    },
+    {
+      "articleId": 1,
+      "userId": 1,
+      "text": "test tersadsadsaadsa",
+      "id": 7
     }
   ],
   "users": [
@@ -118,14 +150,28 @@
       "avatar": "https://w7.pngwing.com/pngs/481/915/png-transparent-computer-icons-user-avatar-woman-avatar-computer-business-conversation.png"
     }
   ],
-  "profile": {
-    "firstname": "Марал",
-    "lastname": "Жаксылыкова",
-    "age": 24,
-    "currency": "KZT",
-    "country": "Kazakhstan",
-    "city": "Уральск",
-    "username": "admin",
-    "avatar": "https://staticg.sportskeeda.com/editor/2023/06/c8108-16880550686799-1920.jpg"
-  }
+  "profile": [
+    {
+      "id": 1,
+      "firstname": "Марал",
+      "lastname": "Жаксылыкова",
+      "age": 24,
+      "currency": "KZT",
+      "country": "Russia",
+      "city": "Уральск",
+      "username": "admin",
+      "avatar": "https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
+    },
+    {
+      "id": 2,
+      "firstname": "Жаслан",
+      "lastname": "Карагойшин",
+      "age": 23,
+      "currency": "EUR",
+      "country": "Germany",
+      "city": "Уральск",
+      "username": "user",
+      "avatar": "https://w7.pngwing.com/pngs/481/915/png-transparent-computer-icons-user-avatar-woman-avatar-computer-business-conversation.png"
+    }
+  ]
 }
