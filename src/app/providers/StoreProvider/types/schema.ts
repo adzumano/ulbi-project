@@ -13,9 +13,11 @@ import { type AddNewCommentSchema } from 'features/AddNewComment'
 import { type LoginSchema } from 'features/AuthByUsername'
 import { type ArticleDetailCommentsSchema } from 'pages/ArticleDetailPage'
 import { type ArticlesSchema } from 'pages/ArticlesPage'
+import { type ScrollRestorationSchema } from 'widgets/Page'
 
 export interface StateSchema {
     user: UserSchema
+    scrollRestoration: ScrollRestorationSchema
 
     // Асинхронные редюсеры
     loginForm?: LoginSchema

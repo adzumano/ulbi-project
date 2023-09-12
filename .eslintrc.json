@@ -58,7 +58,8 @@
         "react/prop-types": "off",
         "multiline-ternary": "off",
         "@typescript-eslint/no-dynamic-delete": "off",
-        "@typescript-eslint/no-invalid-void-type": "off"
+        "@typescript-eslint/no-invalid-void-type": "off",
+        "n/no-callback-literal": 0
     },
     "globals": {
         "_IS_DEV_": true,
