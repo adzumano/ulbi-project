@@ -33,7 +33,7 @@ export const Page: FC<PageProps> = (props) => {
                 position: e.currentTarget.scrollTop,
             }),
         )
-    }, 700)
+    }, 500)
 
     useInfiniteScroll({
         wrapperRef,
@@ -47,7 +47,7 @@ export const Page: FC<PageProps> = (props) => {
     return (
         <section ref={wrapperRef} className={classNames(styles.page, className)} onScroll={onScroll}>
             {children}
-            <div ref={triggerRef} />
+            {onScrollEnd ? <div className={styles.trigger} ref={triggerRef} /> : null}
         </section>
     )
 }

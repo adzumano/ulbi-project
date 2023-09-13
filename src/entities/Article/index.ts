@@ -1,5 +1,5 @@
 export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails'
-export type { Article, ArticleView } from './model/types/article'
+export type { Article, ArticleView, ArticlesSortField, ArticleType } from './model/types/article'
 export type { ArticleDetailSchema } from './model/types/articleDetailSchema'
 export { articleDetailsReducer } from './model/slice/articleDetailsSlice'
 export { getArticleDetailsData } from './model/selectors/getArticleDetailsData'

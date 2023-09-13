@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import { type FC, memo } from 'react'
+import { Text } from 'shared/ui/Text/Text'
 
 import { type Article, type ArticleView } from '../../model/types/article'
 import { ArticleItem } from '../ArticleItem/ArticleItem'
@@ -24,6 +25,14 @@ export const ArticleList: FC<ArticleListProps> = memo((props) => {
     const renderArticle = (article: Article) => (
         <ArticleItem key={article.id} className={styles.card} article={article} view={view} />
     )
+
+    if (!isLoading && !articles.length) {
+        return (
+            <div className={classNames(styles.list, className, styles[view])}>
+                <Text title={'Статьи не найдены'} size={'medium'} />
+            </div>
+        )
+    }
 
     return (
         <div className={classNames(styles.list, className, styles[view])}>

@@ -20,10 +20,11 @@ export interface ArticleTextBlock extends ArticleBlockBase {
     paragraphs: string[]
 }
 
-export type ArticleType = 'IT' | 'SCIENCE' | 'ECONOMICS'
+export type ArticleType = 'it' | 'science' | 'economics' | 'all'
 export type ArticleBlock = ArticleCodeBlock | ArticleImageBlock | ArticleTextBlock
 
 export type ArticleView = 'grid' | 'block'
+export type ArticlesSortField = 'views' | 'title' | 'createdAt'
 
 export interface Article {
     id: string

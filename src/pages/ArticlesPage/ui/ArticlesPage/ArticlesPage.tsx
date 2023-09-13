@@ -1,8 +1,8 @@
 import classNames from 'classnames'
-import { ArticleList, type ArticleView } from 'entities/Article'
-import { ArticleViewSwitcher } from 'features/ArticleViewSwitcher'
+import { ArticleList } from 'entities/Article'
 import { type FC, memo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { type ReducersList, useDynamicModuleLoader } from 'shared/hooks/useDynamicModuleLoader'
 import { useInitialEffect } from 'shared/hooks/useInitialEffect'
@@ -14,10 +14,11 @@ import {
     getArticlesError,
     getArticlesIsLoading,
     getArticlesView,
-} from '../model/selectors/articleSelectors'
-import { fetchNextArticles } from '../model/services/fetchNextArticles/fetchNextArticles'
-import { initArticles } from '../model/services/initArticles/initArticles'
-import { articlesActions, articlesReducer } from '../model/slice/articlesSlice'
+} from '../../model/selectors/articleSelectors'
+import { fetchNextArticles } from '../../model/services/fetchNextArticles/fetchNextArticles'
+import { initArticles } from '../../model/services/initArticles/initArticles'
+import { articlesReducer } from '../../model/slice/articlesSlice'
+import { ArticleFilters } from '../ArticleFilters/ArticleFilters'
 import styles from './ArticlesPage.module.scss'
 
 interface ArticlesPageProps {
@@ -30,6 +31,7 @@ const reducers: ReducersList = {
 
 const ArticlesPage: FC<ArticlesPageProps> = memo(({ className }) => {
     const dispatch = useAppDispatch()
+    const [searchParams] = useSearchParams()
     const articles = useSelector(getArticles.selectAll)
     const isLoading = useSelector(getArticlesIsLoading)
     const error = useSelector(getArticlesError)
@@ -37,15 +39,8 @@ const ArticlesPage: FC<ArticlesPageProps> = memo(({ className }) => {
 
     useDynamicModuleLoader({ reducers, removeAfterUnmount: false })
     useInitialEffect(() => {
-        void dispatch(initArticles())
+        void dispatch(initArticles(searchParams))
     }, [dispatch])
-
-    const onChangeView = useCallback(
-        (view: ArticleView) => {
-            dispatch(articlesActions.setView(view))
-        },
-        [dispatch],
-    )
 
     const onLoadNextPart = useCallback(() => {
         void dispatch(fetchNextArticles())
@@ -56,8 +51,8 @@ const ArticlesPage: FC<ArticlesPageProps> = memo(({ className }) => {
     }
     return (
         <Page className={classNames(styles.page, className)} onScrollEnd={onLoadNextPart}>
-            <ArticleViewSwitcher view={view} onViewClick={onChangeView} />
-            <ArticleList articles={articles} view={view} isLoading={isLoading} />
+            <ArticleFilters />
+            <ArticleList className={styles.list} articles={articles} view={view} isLoading={isLoading} />
         </Page>
     )
 })

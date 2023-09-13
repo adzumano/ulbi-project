@@ -1,24 +1,26 @@
 import classNames from 'classnames'
-import { type ChangeEvent, type FC, type SelectHTMLAttributes, memo, useMemo } from 'react'
+import { type ChangeEvent, type SelectHTMLAttributes, useMemo } from 'react'
 
+import { typedMemo } from '../../lib/helpers/typedMemo/typedMemo'
 import styles from './Select.module.scss'
 
 type ExcludedSelectProps = 'className' | 'options' | 'value' | 'onChange'
-interface SelectOptions {
-    value: string
+export interface SelectOptions<T extends string> {
+    value: T
     content: string
 }
-interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement>, ExcludedSelectProps> {
+interface SelectProps<T extends string>
+    extends Omit<SelectHTMLAttributes<HTMLSelectElement>, ExcludedSelectProps> {
     className?: string
-    options?: SelectOptions[]
-    value?: string
-    onChange?: (value: string) => void
+    options?: Array<SelectOptions<T>>
+    value?: T
+    onChange?: (value: T) => void
 }
-export const Select: FC<SelectProps> = memo((props) => {
+const SelectComponent = <T extends string>(props: SelectProps<T>) => {
     const { className, options = [], value, onChange, ...otherProps } = props
 
     const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        onChange?.(e.target.value)
+        onChange?.(e.target.value as T)
     }
 
     const optionsList = useMemo(() => {
@@ -39,4 +41,6 @@ export const Select: FC<SelectProps> = memo((props) => {
             {optionsList}
         </select>
     )
-})
+}
+
+export const Select = typedMemo(SelectComponent)

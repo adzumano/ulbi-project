@@ -21,7 +21,7 @@
       "createdAt": "03.05.1999",
       "userId": 1,
       "type": [
-        "IT"
+        "it"
       ],
       "blocks": [
         {
@@ -93,7 +93,7 @@
       "createdAt": "03.05.1999",
       "userId": 1,
       "type": [
-        "IT"
+        "it"
       ],
       "blocks": [
         {
@@ -165,7 +165,7 @@
       "createdAt": "03.05.1999",
       "userId": 1,
       "type": [
-        "IT"
+        "it"
       ],
       "blocks": [
         {
@@ -189,7 +189,7 @@
       "createdAt": "03.05.1999",
       "userId": 1,
       "type": [
-        "IT"
+        "it"
       ],
       "blocks": [
         {
@@ -213,7 +213,7 @@
       "createdAt": "03.05.1999",
       "userId": 1,
       "type": [
-        "IT"
+        "it"
       ],
       "blocks": [
         {
@@ -237,7 +237,7 @@
       "createdAt": "03.05.1999",
       "userId": 1,
       "type": [
-        "IT"
+        "it"
       ],
       "blocks": [
         {
@@ -257,11 +257,11 @@
       "title": "Node JS news",
       "subtitle": "Что нового в JavaScript за 2023 году?",
       "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png",
-      "views": 1022,
+      "views": 54,
       "createdAt": "03.05.1999",
       "userId": 1,
       "type": [
-        "IT"
+        "it"
       ],
       "blocks": [
         {
@@ -278,14 +278,14 @@
     },
     {
       "id": 8,
-      "title": "Bun Js news",
+      "title": "Thought in the Wave",
       "subtitle": "Что нового в JavaScript за 2023 году?",
       "img": "https://freepngimg.com/thumb/categories/1402.png",
-      "views": 1022,
-      "createdAt": "03.05.1999",
+      "views": 124,
+      "createdAt": "06.06.2023",
       "userId": 1,
       "type": [
-        "IT"
+        "it"
       ],
       "blocks": [
         {
@@ -302,14 +302,15 @@
     },
     {
       "id": 9,
-      "title": "Java news",
+      "title": "The Beginning of the Servant",
       "subtitle": "Что нового в JavaScript за 2023 году?",
       "img": "https://freepngimg.com/thumb/categories/1402.png",
-      "views": 1022,
-      "createdAt": "03.05.1999",
+      "views": 678,
+      "createdAt": "17.03.2003",
       "userId": 1,
       "type": [
-        "IT"
+        "it",
+        "science"
       ],
       "blocks": [
         {
@@ -326,14 +327,14 @@
     },
     {
       "id": 10,
-      "title": "C news",
+      "title": "The Voyages's Misty",
       "subtitle": "Что нового в JavaScript за 2023 году?",
       "img": "https://freepngimg.com/thumb/categories/1402.png",
-      "views": 1022,
-      "createdAt": "03.05.1999",
+      "views": 900,
+      "createdAt": "27.05.2012",
       "userId": 1,
       "type": [
-        "IT"
+        "it"
       ],
       "blocks": [
         {
@@ -350,14 +351,14 @@
     },
     {
       "id": 11,
-      "title": "C sharp news",
+      "title": "Force of Bride",
       "subtitle": "Что нового в JavaScript за 2023 году?",
       "img": "https://freepngimg.com/thumb/categories/1402.png",
       "views": 1022,
-      "createdAt": "03.05.1999",
+      "createdAt": "31.12.2007",
       "userId": 1,
       "type": [
-        "IT"
+        "science"
       ],
       "blocks": [
         {
@@ -374,14 +375,14 @@
     },
     {
       "id": 12,
-      "title": "Flutter news",
+      "title": "The Every Ice",
       "subtitle": "Что нового в JavaScript за 2023 году?",
       "img": "https://freepngimg.com/thumb/categories/1402.png",
-      "views": 1022,
-      "createdAt": "03.05.1999",
+      "views": 33,
+      "createdAt": "21.01.2020",
       "userId": 1,
       "type": [
-        "IT"
+        "it"
       ],
       "blocks": [
         {
@@ -398,14 +399,14 @@
     },
     {
       "id": 13,
-      "title": "IOS news",
+      "title": "Smooth Husband",
       "subtitle": "Что нового в JavaScript за 2023 году?",
       "img": "https://freepngimg.com/thumb/categories/1402.png",
-      "views": 1022,
-      "createdAt": "03.05.1999",
+      "views": 2032,
+      "createdAt": "02.06.2015",
       "userId": 1,
       "type": [
-        "IT"
+        "it"
       ],
       "blocks": [
         {
