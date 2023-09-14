@@ -1,6 +1,5 @@
 import classNames from 'classnames'
 import { getArticleDetailsData } from 'entities/Article'
-import { getUserAuthData } from 'entities/User'
 import { type FC, memo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -15,7 +14,7 @@ interface ArticleDetailPageHeaderProps {
 }
 export const ArticleDetailPageHeader: FC<ArticleDetailPageHeaderProps> = memo(({ className }) => {
     const navigate = useNavigate()
-    const userData = useSelector(getUserAuthData)
+    // const userData = useSelector(getUserAuthData)
     const article = useSelector(getArticleDetailsData)
     const canEdit = useSelector(getCanEditArticle)
 

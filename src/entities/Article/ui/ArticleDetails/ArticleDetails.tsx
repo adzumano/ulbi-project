@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { ArticleBlockList } from 'entities/Article/ui/ArticleBlockList/ArticleBlockList'
-import { type FC, memo, useEffect } from 'react'
+import { type FC, memo } from 'react'
 import { useSelector } from 'react-redux'
 import CalendarIcon from 'shared/assets/icons/calendar.svg'
 import ViewIcon from 'shared/assets/icons/view.svg'

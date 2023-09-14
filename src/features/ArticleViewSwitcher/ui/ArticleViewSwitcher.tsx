@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { type ArticleView } from 'entities/Article'
-import { type FC, type SVGProps, type VFC, memo, useCallback } from 'react'
+import { type FC, type SVGProps, type VFC, memo } from 'react'
 import BlockIcon from 'shared/assets/icons/block.svg'
 import GridIcon from 'shared/assets/icons/grid.svg'
 import { Button } from 'shared/ui/Button/Button'

@@ -6,11 +6,7 @@ import { type ReducersList, useDynamicModuleLoader } from 'shared/hooks/useDynam
 import { Button } from 'shared/ui/Button/Button'
 import { Input } from 'shared/ui/Input/Input'
 
-import {
-    getNewCommentError,
-    getNewCommentIsLoading,
-    getNewCommentText,
-} from '../../model/selectors/addNewCommentSelectors'
+import { getNewCommentText } from '../../model/selectors/addNewCommentSelectors'
 import { addNewCommentActions, addNewCommentReducer } from '../../model/slice/addNewCommentSlice'
 import styles from './AddNewCommentForm.module.scss'
 
@@ -26,8 +22,8 @@ const reducers: ReducersList = {
 const AddNewCommentForm: FC<AddNewCommentFormProps> = memo((props) => {
     const { className, onSendComment } = props
     const text = useSelector(getNewCommentText)
-    const error = useSelector(getNewCommentError)
-    const isLoading = useSelector(getNewCommentIsLoading)
+    // const error = useSelector(getNewCommentError)
+    // const isLoading = useSelector(getNewCommentIsLoading)
     const dispatch = useAppDispatch()
 
     useDynamicModuleLoader({ reducers })

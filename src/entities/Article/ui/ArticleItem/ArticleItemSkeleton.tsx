@@ -1,11 +1,7 @@
 import classNames from 'classnames'
-import { ArticleTextBlockComponent } from 'entities/Article/ui/ArticleTextBlockComponent/ArticleTextBlockComponent'
 import { type FC, memo } from 'react'
-import { Avatar } from 'shared/ui/Avatar/Avatar'
-import { Button } from 'shared/ui/Button/Button'
 import { Card } from 'shared/ui/Card/Card'
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton'
-import { Text } from 'shared/ui/Text/Text'
 
 import { type ArticleView } from '../../model/types/article'
 import styles from './ArticleItem.module.scss'

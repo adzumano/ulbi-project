@@ -1,5 +1,13 @@
 import classNames from 'classnames'
-import { type FC, type MouseEvent, MutableRefObject, useCallback, useEffect, useRef, useState } from 'react'
+import {
+    type FC,
+    type MouseEvent,
+    type MutableRefObject,
+    useCallback,
+    useEffect,
+    useRef,
+    useState,
+} from 'react'
 import { useTheme } from 'shared/config/theme'
 import { Portal } from 'shared/ui/Portal/Portal'
 

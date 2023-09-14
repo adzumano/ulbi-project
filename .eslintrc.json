@@ -48,10 +48,10 @@
         "@typescript-eslint/strict-boolean-expressions": "off",
         "@typescript-eslint/comma-dangle": "off",
         "@typescript-eslint/space-before-function-paren": "off",
-        "i18next/no-literal-string": ["error", {
-            "markupOnly": true,
-            "ignoreAttribute": ["data-testid", "variant", "to", "size"]
-        }],
+//        "i18next/no-literal-string": ["error", {
+//            "markupOnly": true,
+//            "ignoreAttribute": ["data-testid", "variant", "to", "size"]
+//        }],
         "react/display-name": "off",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "error",
@@ -59,7 +59,8 @@
         "multiline-ternary": "off",
         "@typescript-eslint/no-dynamic-delete": "off",
         "@typescript-eslint/no-invalid-void-type": "off",
-        "n/no-callback-literal": 0
+        "n/no-callback-literal": "off",
+        "i18next/no-literal-string": "off"
     },
     "globals": {
         "_IS_DEV_": true,

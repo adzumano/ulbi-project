@@ -16,11 +16,15 @@ const defaultAsyncReducers: ReducersList = {
     articleDetailGroup: articleDetailGroupReducer,
     addNewComment: addNewCommentReducer,
 }
-export const StoreDecorator =
-    (state: DeepPartial<StateSchema>, asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>) =>
-    (Story: FC<StoryObj>) =>
-        (
+export const StoreDecorator = (
+    state: DeepPartial<StateSchema>,
+    asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>,
+) => {
+    return (Story: FC<StoryObj>) => {
+        return (
             <StoreProvider initialState={state} asyncReducers={{ ...asyncReducers, ...defaultAsyncReducers }}>
                 <Story />
             </StoreProvider>
         )
+    }
+}

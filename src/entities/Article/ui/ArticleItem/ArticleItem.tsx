@@ -1,6 +1,5 @@
 import classNames from 'classnames'
-import { type FC, type HTMLAttributeAnchorTarget, memo, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { type FC, type HTMLAttributeAnchorTarget, memo } from 'react'
 import ViewIcon from 'shared/assets/icons/view.svg'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 import { AppLink } from 'shared/ui/AppLink/AppLink'
@@ -23,12 +22,6 @@ interface ArticleItemProps {
 
 export const ArticleItem: FC<ArticleItemProps> = memo((props) => {
     const { className, article, view, target } = props
-
-    const navigate = useNavigate()
-    const onOpenArticle = useCallback(() => {
-        navigate(`${RoutePath.articles}/${article.id}`)
-    }, [navigate, article.id])
-
     const types = <Text className={styles.types} text={article.type.join(', ')} />
     const views = (
         <>

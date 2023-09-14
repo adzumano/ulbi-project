@@ -13,7 +13,6 @@ import { Page } from 'widgets/Page'
 
 import {
     getArticleDetailComments,
-    getArticleDetailCommentsError,
     getArticleDetailCommentsIsLoading,
 } from '../model/selectors/getArticleDetailComments'
 import {
@@ -41,7 +40,7 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = memo(({ className }) => {
     const isLoading = useSelector(getArticleDetailCommentsIsLoading)
     const recommendations = useSelector(getArticleDetailRecommendations.selectAll)
     const recommendationsIsLoading = useSelector(getArticleDetailRecommendationsIsLoading)
-    const error = useSelector(getArticleDetailCommentsError)
+    // const error = useSelector(getArticleDetailCommentsError)
     const dispatch = useAppDispatch()
 
     useDynamicModuleLoader({ reducers })
