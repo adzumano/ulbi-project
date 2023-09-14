@@ -3,7 +3,7 @@ import { type FC, memo } from 'react'
 
 import styles from './Text.module.scss'
 
-type TextVariant = 'primary' | 'error'
+type TextVariant = 'primary' | 'error' | 'inverted'
 type TextAlign = 'left' | 'center' | 'right'
 type TextSize = 'small' | 'medium'
 interface TextProps {

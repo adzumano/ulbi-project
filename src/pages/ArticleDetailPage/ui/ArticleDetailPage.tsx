@@ -4,12 +4,10 @@ import { CommentList } from 'entities/Comment'
 import { AddNewCommentForm } from 'features/AddNewComment'
 import { type FC, memo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
-import { RoutePath } from 'shared/config/routeConfig/routeConfig'
+import { useParams } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { type ReducersList, useDynamicModuleLoader } from 'shared/hooks/useDynamicModuleLoader'
 import { useInitialEffect } from 'shared/hooks/useInitialEffect'
-import { Button } from 'shared/ui/Button/Button'
 import { Text } from 'shared/ui/Text/Text'
 import { Page } from 'widgets/Page'
 
@@ -27,6 +25,7 @@ import { fetchArticleRecommendations } from '../model/services/fetchArticleRecom
 import { fetchCommentsByArticleId } from '../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
 import { articleDetailGroupReducer } from '../model/slice'
 import styles from './ArticleDetailPage.module.scss'
+import { ArticleDetailPageHeader } from './ArticleDetailPageHeader/ArticleDetailPageHeader'
 
 interface ArticleDetailPageProps {
     className?: string
@@ -44,7 +43,6 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = memo(({ className }) => {
     const recommendationsIsLoading = useSelector(getArticleDetailRecommendationsIsLoading)
     const error = useSelector(getArticleDetailCommentsError)
     const dispatch = useAppDispatch()
-    const navigate = useNavigate()
 
     useDynamicModuleLoader({ reducers })
     useInitialEffect(() => {
@@ -59,19 +57,13 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = memo(({ className }) => {
         [dispatch],
     )
 
-    const onBack = useCallback(() => {
-        navigate(RoutePath.articles)
-    }, [navigate])
-
     if (!id) {
         return <div>Статья не найдена</div>
     }
 
     return (
         <Page className={classNames(styles.page, className)}>
-            <Button variant={'outline'} size={'small'} onClick={onBack}>
-                Назад
-            </Button>
+            <ArticleDetailPageHeader />
             <ArticleDetails id={id} />
             <Text title={'Рекомендуем'} />
             <ArticleList
