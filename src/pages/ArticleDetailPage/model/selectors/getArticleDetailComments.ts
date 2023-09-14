@@ -3,10 +3,10 @@ import { type StateSchema } from 'app/providers/StoreProvider'
 import { articleDetailCommentsAdapter } from '../adapter/articleDetailCommentsAdapter/articleDetailCommentsAdapter'
 
 export const getArticleDetailComments = articleDetailCommentsAdapter.getSelectors<StateSchema>(
-    (state) => state.articleDetailsComments ?? articleDetailCommentsAdapter.getInitialState(),
+    (state) => state.articleDetailGroup?.comments ?? articleDetailCommentsAdapter.getInitialState(),
 )
 
 export const getArticleDetailCommentsIsLoading = (state: StateSchema) =>
-    state.articleDetailsComments?.isLoading
+    state.articleDetailGroup?.comments?.isLoading
 
-export const getArticleDetailCommentsError = (state: StateSchema) => state.articleDetailsComments?.error
+export const getArticleDetailCommentsError = (state: StateSchema) => state.articleDetailGroup?.comments?.error

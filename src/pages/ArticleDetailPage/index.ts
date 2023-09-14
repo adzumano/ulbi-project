@@ -1,3 +1,6 @@
 export { ArticleDetailPageLazy as ArticleDetailPage } from './ui/ArticleDetailPage.lazy'
 export { type ArticleDetailCommentsSchema } from './model/types/articleDetailCommentsSchema'
+export { type ArticleDetailRecommendationSchema } from './model/types/articleDetailRecommendationSchema'
+export { type ArticleDetailGroupSchema } from './model/types'
 export { articleDetailCommentsReducer } from './model/slice/articleDetailCommentsSlice'
+export { articleDetailGroupReducer } from './model/slice'

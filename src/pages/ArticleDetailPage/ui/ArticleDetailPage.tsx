@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { ArticleDetails } from 'entities/Article'
+import { ArticleDetails, ArticleList } from 'entities/Article'
 import { CommentList } from 'entities/Comment'
 import { AddNewCommentForm } from 'features/AddNewComment'
 import { type FC, memo, useCallback } from 'react'
@@ -18,9 +18,14 @@ import {
     getArticleDetailCommentsError,
     getArticleDetailCommentsIsLoading,
 } from '../model/selectors/getArticleDetailComments'
+import {
+    getArticleDetailRecommendations,
+    getArticleDetailRecommendationsIsLoading,
+} from '../model/selectors/getArticleDetailRecommendations'
 import { addNewCommentArticle } from '../model/services/addNewCommentArticle/addNewCommentArticle'
+import { fetchArticleRecommendations } from '../model/services/fetchArticleRecommendations/fetchArticleRecommendations'
 import { fetchCommentsByArticleId } from '../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
-import { articleDetailCommentsReducer } from '../model/slice/articleDetailCommentsSlice'
+import { articleDetailGroupReducer } from '../model/slice'
 import styles from './ArticleDetailPage.module.scss'
 
 interface ArticleDetailPageProps {
@@ -28,13 +33,15 @@ interface ArticleDetailPageProps {
 }
 
 const reducers: ReducersList = {
-    articleDetailsComments: articleDetailCommentsReducer,
+    articleDetailGroup: articleDetailGroupReducer,
 }
 
 const ArticleDetailPage: FC<ArticleDetailPageProps> = memo(({ className }) => {
     const { id } = useParams<{ id: string }>()
     const comments = useSelector(getArticleDetailComments.selectAll)
     const isLoading = useSelector(getArticleDetailCommentsIsLoading)
+    const recommendations = useSelector(getArticleDetailRecommendations.selectAll)
+    const recommendationsIsLoading = useSelector(getArticleDetailRecommendationsIsLoading)
     const error = useSelector(getArticleDetailCommentsError)
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
@@ -42,6 +49,7 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = memo(({ className }) => {
     useDynamicModuleLoader({ reducers })
     useInitialEffect(() => {
         void dispatch(fetchCommentsByArticleId(String(id)))
+        void dispatch(fetchArticleRecommendations())
     }, [dispatch])
 
     const onSendComment = useCallback(
@@ -65,6 +73,14 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = memo(({ className }) => {
                 Назад
             </Button>
             <ArticleDetails id={id} />
+            <Text title={'Рекомендуем'} />
+            <ArticleList
+                className={styles.recommendations}
+                articles={recommendations}
+                isLoading={recommendationsIsLoading}
+                view={'grid'}
+                target={'_blank'}
+            />
             <Text title={'Комментарий'} />
             <AddNewCommentForm onSendComment={onSendComment} />
             <CommentList isLoading={isLoading} comments={comments} />

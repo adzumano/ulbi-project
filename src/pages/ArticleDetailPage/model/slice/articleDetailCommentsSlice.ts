@@ -8,7 +8,7 @@ import { type ArticleDetailCommentsSchema } from '../types/articleDetailComments
 const initialState = articleDetailCommentsAdapter.getInitialState<ArticleDetailCommentsSchema>({
     isLoading: false,
     error: undefined,
-    ids: [1, 2],
+    ids: [],
     entities: {},
 })
 

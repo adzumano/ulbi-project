@@ -1,8 +1,9 @@
 import classNames from 'classnames'
-import { type FC, memo, useCallback } from 'react'
+import { type FC, type HTMLAttributeAnchorTarget, memo, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ViewIcon from 'shared/assets/icons/view.svg'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
+import { AppLink } from 'shared/ui/AppLink/AppLink'
 import { Avatar } from 'shared/ui/Avatar/Avatar'
 import { Button } from 'shared/ui/Button/Button'
 import { Card } from 'shared/ui/Card/Card'
@@ -17,10 +18,11 @@ interface ArticleItemProps {
     className?: string
     article: Article
     view: ArticleView
+    target?: HTMLAttributeAnchorTarget
 }
 
 export const ArticleItem: FC<ArticleItemProps> = memo((props) => {
-    const { className, article, view } = props
+    const { className, article, view, target } = props
 
     const navigate = useNavigate()
     const onOpenArticle = useCallback(() => {
@@ -52,9 +54,11 @@ export const ArticleItem: FC<ArticleItemProps> = memo((props) => {
                         <ArticleTextBlockComponent className={styles.textBlock} block={textBlock} />
                     ) : null}
                     <div className={styles.footer}>
-                        <Button variant={'outline'} size={'small'} onClick={onOpenArticle}>
-                            Читать далее...
-                        </Button>
+                        <AppLink to={`${RoutePath.articles}/${article.id}`} target={target}>
+                            <Button variant={'outline'} size={'small'}>
+                                Читать далее...
+                            </Button>
+                        </AppLink>
                         {views}
                     </div>
                 </Card>
@@ -62,8 +66,12 @@ export const ArticleItem: FC<ArticleItemProps> = memo((props) => {
         )
     }
     return (
-        <div className={classNames(styles.ArticleItem, className, styles[view])}>
-            <Card className={styles.card} onClick={onOpenArticle}>
+        <AppLink
+            target={target}
+            to={`${RoutePath.articles}/${article.id}`}
+            className={classNames(styles.ArticleItem, className, styles[view])}
+        >
+            <Card className={styles.card}>
                 <div className={styles.imgWrapper}>
                     <img className={styles.img} src={article.img} alt={article.title} />
                     <Text className={styles.date} text={article.createdAt} />
@@ -74,6 +82,6 @@ export const ArticleItem: FC<ArticleItemProps> = memo((props) => {
                 </div>
                 <Text className={styles.title} text={article.title} />
             </Card>
-        </div>
+        </AppLink>
     )
 })

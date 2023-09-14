@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { type FC, memo } from 'react'
+import { type FC, type HTMLAttributeAnchorTarget, memo } from 'react'
 import { Text } from 'shared/ui/Text/Text'
 
 import { type Article, type ArticleView } from '../../model/types/article'
@@ -12,6 +12,7 @@ interface ArticleListProps {
     articles: Article[]
     isLoading?: boolean
     view?: ArticleView
+    target?: HTMLAttributeAnchorTarget
 }
 
 const getSkeletons = (view: ArticleView) =>
@@ -20,10 +21,10 @@ const getSkeletons = (view: ArticleView) =>
         .map((_, index) => <ArticleItemSkeleton className={styles.card} key={index} view={view} />)
 
 export const ArticleList: FC<ArticleListProps> = memo((props) => {
-    const { className, articles = [], view = 'block', isLoading = false } = props
+    const { className, articles = [], view = 'block', isLoading = false, target } = props
 
     const renderArticle = (article: Article) => (
-        <ArticleItem key={article.id} className={styles.card} article={article} view={view} />
+        <ArticleItem key={article.id} className={styles.card} article={article} view={view} target={target} />
     )
 
     if (!isLoading && !articles.length) {
