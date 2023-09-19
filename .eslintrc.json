@@ -35,7 +35,8 @@
     "plugins": [
         "react",
         "i18next",
-        "react-hooks"
+        "react-hooks",
+        "ulbi-project-fsd"
     ],
     "rules": {
         "indent": ["error", 4, { "SwitchCase": 1 }],
@@ -60,7 +61,8 @@
         "@typescript-eslint/no-dynamic-delete": "off",
         "@typescript-eslint/no-invalid-void-type": "off",
         "n/no-callback-literal": "off",
-        "i18next/no-literal-string": "off"
+        "i18next/no-literal-string": "off",
+        "ulbi-project-fsd/path-checker": "error"
     },
     "globals": {
         "_IS_DEV_": true,
